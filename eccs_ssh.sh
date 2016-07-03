@@ -1,12 +1,13 @@
 #!/bin/bash
-uid=$1
-if [ $# = 1 ]; then
+if [ $# = 0 ]; then
+  read -p "Username: " uid
   read -sp "Password: " pass
-elif [ $# = 2 ]; then
+if [ $# = 1 ]; then
+  uid=$1
+  read -sp "Password: " pass
+elif [ $# -gt 1 ]; then
+  uid=$1
   pass=$2
-else
-  echo 'Usage: eccs_ssh.sh <username> [password]'
-  exit 0
 fi
 
 o=`curl -F "userID=$uid" -F "passWD=$pass" -F "type=file" -F "file=@${HOME}/.ssh/id_rsa.pub" https://secure.ecc.u-tokyo.ac.jp/eccs/keyUpload.cgi`
