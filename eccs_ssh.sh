@@ -2,7 +2,7 @@
 if [ $# = 0 ]; then
   read -p "Username: " uid
   read -sp "Password: " pass
-if [ $# = 1 ]; then
+elif [ $# = 1 ]; then
   uid=$1
   read -sp "Password: " pass
 elif [ $# -gt 1 ]; then
